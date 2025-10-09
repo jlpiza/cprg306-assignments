@@ -79,9 +79,9 @@ export default function ItemList() {
 
         groupedItems.map(([category, itemsInCategory]) => (
           <div key={category} className="mb-4">
-            <h2 className="text-2xl font-bold text-white capitalize mb-2">
+            <h2 className="text-2xl font-bold text-white capitalize mb-2 text-center">
               {category}
-            </h2>
+              </h2>
             {itemsInCategory.map((item) => (
               <Item key={item.id} Item={item} />
             ))}
