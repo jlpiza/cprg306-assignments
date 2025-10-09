@@ -1,15 +1,16 @@
-// item.js
-import React from "react";
+export default function Item({ Item }) {
+  const { name, quantity, category } = Item;
 
-function Item({ name, quantity, category }) {
   return (
-    <li className="bg-gray-500 text-white p-4 mb-3 rounded-md shadow-md">
-      <p className="font-bold text-lg">{name}</p>
-      <p className="text-sm">
-        Buy {quantity} in {category}
-      </p>
-    </li>
+    <div className="flex justify-center">
+      <section className="bg-slate-800 text-center w-xl p-2 m-2 rounded-lg">
+        <ul>
+          <li className="text-2xl font-bold text-white">{name}</li>
+          <li className="text-lg text-white">
+            Buy {quantity} in {category}
+          </li>
+        </ul>
+      </section>
+    </div>
   );
 }
-
-export default Item;
