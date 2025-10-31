@@ -60,20 +60,19 @@ export default function MealIdeas({ ingredient }) {
       ) : meals.length === 0 ? (
         <p className="text-sm">No meals found.</p>
       ) : (
-        <ul className="space-y-4">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
   {meals.map((m) => (
-    <li key={m.idMeal} className="flex items-center gap-4">
-      <Image
-        src={m.strMealThumb} 
+    <li key={m.idMeal} className="border rounded p-2">
+      <p className="font-medium">{m.strMeal}</p>
+      <img
+        src={m.strMealThumb}   // URL externa
         alt={m.strMeal}
-        width={150}       
-        height={150}        
-        className="rounded-lg"
+        className="mt-1 rounded"
       />
-      <span className="font-semibold">{m.strMeal}</span>
     </li>
   ))}
 </ul>
+
       )}
     </div>
   );
