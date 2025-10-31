@@ -1,5 +1,5 @@
-export default function Item({ Item }) {
-  const { name, quantity, category } = Item;
+export default function Item({ item }) {
+  const { name, quantity, category } = item;
 
   return (
     <div className="flex justify-center">

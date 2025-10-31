@@ -1,10 +1,10 @@
 "use client";
 import Item from "./item";
 import { useState } from "react";
-import items from "./items.json";
 
-export default function ItemList() {
+export default function ItemList({ items, onItemSelect }) {
   const [sortBy, setSortBy] = useState("name");
+
   const itemsCopy = [...items];
 
   if (sortBy === "name") {
@@ -14,7 +14,7 @@ export default function ItemList() {
   }
 
   return (
-    <main>
+    <div>
       <div className="m-4 items-center justify-center flex">
         <label className="text-white mr-2 font-bold">Sort by:</label>
         <button
@@ -36,10 +36,10 @@ export default function ItemList() {
       </div>
 
       <div>
-        {itemsCopy.map((entry) => (
-          <Item key={entry.id} item={entry} />
+        {itemsCopy.map((item) => (
+          <Item key={item.id} item={item} onSelect={() => onItemSelect && onItemSelect(item)} />
         ))}
       </div>
-    </main>
+    </div>
   );
 }
