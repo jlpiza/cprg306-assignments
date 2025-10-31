@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 
 export async function fetchMealIdeas(ingredient) {
   if (!ingredient) return [];
@@ -26,7 +27,7 @@ export default function MealIdeas({ ingredient }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const loadMealIdeas = async () => {
+  const loadMealIdeas = useCallback(async () => {
     if (!ingredient) {
       setMeals([]);
       return;
@@ -42,33 +43,29 @@ export default function MealIdeas({ ingredient }) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [ingredient]); 
 
   useEffect(() => {
     loadMealIdeas();
-  }, [ingredient]);
+  }, [loadMealIdeas]); 
 
   return (
     <div className="max-w-md mx-auto mt-6 p-6 bg-slate-800 rounded-xl shadow-lg mb-8 text-white">
       <h2 className="text-2xl font-bold mb-4">Meal Ideas</h2>
 
       {!ingredient ? (
-        <p className="text-sm">Clique em um item da lista para ver ideias de receitas.</p>
+        <p className="text-sm">Click on an item in the list to see recipe ideas.</p>
       ) : loading ? (
         <p>Loading meal ideas for "{ingredient}"...</p>
       ) : error ? (
         <p className="text-red-400">{error}</p>
       ) : meals.length === 0 ? (
-        <p className="text-sm">Nenhuma receita encontrada para "{ingredient}".</p>
+        <p className="text-sm">No recipes found for "{ingredient}".</p>
       ) : (
         <ul className="space-y-4">
           {meals.map((m) => (
             <li key={m.idMeal} className="flex items-center gap-4">
-              <img
-                src={m.strMealThumb}
-                alt={m.strMeal}
-                className="w-16 h-16 object-cover rounded"
-              />
+              <Image src="/meal.jpg" alt="Meal" width={500} height={300} />
               <span className="font-semibold">{m.strMeal}</span>
             </li>
           ))}
