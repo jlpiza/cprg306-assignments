@@ -61,13 +61,19 @@ export default function MealIdeas({ ingredient }) {
         <p className="text-sm">No meals found.</p>
       ) : (
         <ul className="space-y-4">
-          {meals.map((m) => (
-            <li key={m.idMeal} className="flex items-center gap-4">
-              <Image src="/meal.jpg" alt="Meal" width={500} height={300} />
-              <span className="font-semibold">{m.strMeal}</span>
-            </li>
-          ))}
-        </ul>
+  {meals.map((m) => (
+    <li key={m.idMeal} className="flex items-center gap-4">
+      <Image
+        src={m.strMealThumb} 
+        alt={m.strMeal}
+        width={150}       
+        height={150}        
+        className="rounded-lg"
+      />
+      <span className="font-semibold">{m.strMeal}</span>
+    </li>
+  ))}
+</ul>
       )}
     </div>
   );
