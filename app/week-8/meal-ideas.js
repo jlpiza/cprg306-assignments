@@ -55,12 +55,10 @@ export default function MealIdeas({ ingredient }) {
 
       {!ingredient ? (
         <p className="text-sm">Click on an item in the list to see recipe ideas.</p>
-      ) : loading ? (
-        <p>'Loading meal ideas for "${ingredient}"...'</p>
       ) : error ? (
         <p className="text-red-400">{error}</p>
       ) : meals.length === 0 ? (
-        <p className="text-sm">'No recipes found for "${ingredient}".'</p>
+        <p className="text-sm">No meals found.</p>
       ) : (
         <ul className="space-y-4">
           {meals.map((m) => (
